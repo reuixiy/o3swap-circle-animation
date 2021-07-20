@@ -94,8 +94,9 @@ const SMALL_IMGS = [
 /**
  * Calculate coordinates of small img relative to center of medium img
  *
- * @param {Number} hypotenuse The line between center point of small and medium img
- * @param {Number} angle The coordinate position angle
+ * @param {Number} hypotenuse The line between center point of
+ *                            small and medium img
+ * @param {Number} angle      The coordinate position angle
  *
  * @return {Object} (x, y)
  *
@@ -114,8 +115,8 @@ const calcCathetus = (hypotenuse, angle) => {
  * Set property for an element
  *
  * @param {String} selectors CSS selectors
- * @param {String} prop Property
- * @param {String} value Property value
+ * @param {String} prop      Property
+ * @param {String} value     Property value
  *
  * @see https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics
  */
@@ -123,9 +124,10 @@ const setProperty = (selectors, prop, value) =>
   document.querySelector(selectors).style.setProperty(prop, value);
 
 /**
- * Set translate() in transform property for small img
+ * Set translate() in transform property for small imgs to
+ * make them around medium img.
  *
- * @param {Array} imgs small images
+ * @param {Array} imgs Small images
  */
 const setTranslateXY = (imgs) => {
   imgs.forEach((img) => {

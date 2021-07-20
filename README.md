@@ -1,6 +1,6 @@
 # o3swap-circle-animation
 
-Pure HTML+CSS+JavaScript implementation of the https://o3swap.com homepage price section circle animation, which originally generated from [data.json](https://github.com/O3Labs/o3swap/blob/main/src/assets/json/swap/data.json) by <https://github.com/ngx-lottie/ngx-lottie>.
+Pure HTML+CSS+JavaScript implementation for https://o3swap.com homepage circle animation in "price" section, which originally generated from [data.json](https://github.com/O3Labs/o3swap/blob/main/src/assets/json/swap/data.json) via <https://github.com/ngx-lottie/ngx-lottie>.
 
 Orig: [home.component.html](https://github.com/O3Labs/o3swap/blob/6771d14cdc7b933870ede98700d12bd51ab56550/src/app/pages/home/home.component.html#L58-L71).
 

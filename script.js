@@ -1,14 +1,16 @@
-// UI -------------------------------------------------------------------------
-const maxWidth = 620;
-const duration = 4.2;
-const radius = 90;
-const smallImgs = [
+// Constants ------------------------------------------------------------------
+const MAX_WIDTH = 620;
+const RADIUS = 90;
+const DURATION = 4.2;
+
+const SMALL_IMGS = [
   // data structure
   // {
-  //   n: 'name',
+  //   n: 'name of img',
   //   a: 'coordinate position angle',
   //   r: 'self rotate angle',
   // },
+
   // right bottom
   {
     n: 1,
@@ -25,6 +27,7 @@ const smallImgs = [
     a: 210,
     r: 45,
   },
+
   // left bottom
   {
     n: 6,
@@ -41,6 +44,7 @@ const smallImgs = [
     a: 270,
     r: 90,
   },
+
   // right top
   {
     n: 11,
@@ -57,6 +61,7 @@ const smallImgs = [
     a: 0,
     r: 180,
   },
+
   // left top
   {
     n: 16,
@@ -85,6 +90,17 @@ const smallImgs = [
   },
 ];
 
+// UI -------------------------------------------------------------------------
+/**
+ * Calculate coordinates of small img relative to center of medium img
+ *
+ * @param {Number} hypotenuse The line between center point of small and medium img
+ * @param {Number} angle The coordinate position angle
+ *
+ * @return {Object} (x, y)
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#cartesian_coordinates
+ */
 const calcCathetus = (hypotenuse, angle) => {
   const radian = ((2 * Math.PI) / 360) * angle;
 
@@ -94,12 +110,26 @@ const calcCathetus = (hypotenuse, angle) => {
   };
 };
 
-const setProperty = (selectors, name, value) =>
-  document.querySelector(selectors).style.setProperty(name, value);
+/**
+ * Set property for an element
+ *
+ * @param {String} selectors CSS selectors
+ * @param {String} prop Property
+ * @param {String} value Property value
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics
+ */
+const setProperty = (selectors, prop, value) =>
+  document.querySelector(selectors).style.setProperty(prop, value);
 
+/**
+ * Set translate() in transform property for small img
+ *
+ * @param {Array} imgs small images
+ */
 const setTranslateXY = (imgs) => {
   imgs.forEach((img) => {
-    const { x, y } = calcCathetus(radius, img.a);
+    const { x, y } = calcCathetus(RADIUS, img.a);
 
     setProperty(
       `.img-${img.n}`,
@@ -109,34 +139,43 @@ const setTranslateXY = (imgs) => {
   });
 };
 
-setTranslateXY(smallImgs);
-
-// Responsive -----------------------------------------------------------------
-const calcAspectRatio = () => window.innerWidth / maxWidth;
-
-const setScale = () => setProperty(':root', '--scale-ui', calcAspectRatio());
-
-// init when page first load
-setScale();
-// update when window is resized
-window.addEventListener('resize', () => setScale());
+setTranslateXY(SMALL_IMGS);
 
 // Animation ------------------------------------------------------------------
 const eleClasses = ['.left-top', '.right-top', '.left-bottom', '.right-bottom'];
 
 let index = 0;
 
-const activeAnimation = () => {
+/**
+ * Infinite animation loop via recursion
+ */
+const setAnimation = () => {
+  // reset index
   index = index > 3 ? 0 : index;
 
-  const ele = document.querySelector(eleClasses[index]);
-  const delay = duration * 1000;
+  const currentEle = document.querySelector(eleClasses[index]);
+  const delay = DURATION * 1000;
 
-  ele.classList.add('active');
-  setTimeout(() => ele.classList.remove('active'), delay);
+  // start animation
+  currentEle.classList.add('active');
 
+  // stop animation after a delay
+  setTimeout(() => currentEle.classList.remove('active'), delay);
+
+  // increment index
   index++;
-  setTimeout(() => activeAnimation(), delay * 1.2);
+  // run setAnimation() again with new index after a longer delay
+  setTimeout(() => setAnimation(), delay * 1.2);
 };
 
-activeAnimation();
+setAnimation();
+
+// Responsive -----------------------------------------------------------------
+const calcAspectRatio = () => window.innerWidth / MAX_WIDTH;
+
+const setScale = () => setProperty(':root', '--ui-scale', calcAspectRatio());
+
+// init when page first load
+setScale();
+// update when window is resized
+window.addEventListener('resize', () => setScale());

@@ -3,14 +3,22 @@
 }
 
 :root {
+  --width-content: 620px;
+
   --img-large: 140px;
   --img-medium: 100px;
   --img-small: 50px;
-  --width-content: 620px;
-  --scale-ui: 1;
-  --ripple-delay: 0.7s;
+
+  --duration-basic: 4.2s;
+  --duration-breath: 1.05s;
+  --duration-ripple: 0.7s;
+
+  --ui-scale: 1;
 }
 
+/****************************************************************************** 
+ * Layout
+ */
 body {
   position: absolute;
   display: flex;
@@ -36,26 +44,26 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.right-bottom {
+.circle-group {
   position: absolute;
+}
+
+.right-bottom {
   right: 0;
   bottom: 0;
 }
 
 .left-bottom {
-  position: absolute;
   left: 0;
   bottom: 0;
 }
 
 .right-top {
-  position: absolute;
   right: 0;
   top: 0;
 }
 
 .left-top {
-  position: absolute;
   left: 0;
   top: 0;
 }
@@ -69,17 +77,16 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   width: var(--img-large);
   height: var(--img-large);
+
+  background: url(images/img_23.png) no-repeat center center;
   object-fit: contain;
   padding: 2em;
-  background: url(images/img_23.png) no-repeat center center;
+
   border-radius: 50%;
   z-index: 1;
-}
-
-.img-large:hover {
-  animation: breath infinite alternate 1.05s;
 }
 
 .img-medium {
@@ -108,40 +115,44 @@ img {
   width: var(--img-small);
   height: var(--img-small);
 
-  /* Reset small imgs' transform axis */
+  /* Reset small img's transform axis */
   left: -25px;
   bottom: -25px;
 }
 
-/* Animation */
+/****************************************************************************** 
+ * Animation
+ */
 .circle {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   border: solid 0.01em #fff;
   border-radius: 50%;
-  animation: ripple infinite 4.2s linear;
+
+  animation: ripple infinite var(--duration-basic) linear;
 }
 
 .one {
   animation-delay: 0;
 }
-
 .two {
-  animation-delay: var(--ripple-delay);
+  animation-delay: var(--duration-ripple);
 }
-
 .three {
-  animation-delay: calc(var(--ripple-delay) * 2);
+  animation-delay: calc(var(--duration-ripple) * 2);
 }
-
 .four {
-  animation-delay: calc(var(--ripple-delay) * 3);
+  animation-delay: calc(var(--duration-ripple) * 3);
+}
+.five {
+  animation-delay: calc(var(--duration-ripple) * 4);
 }
 
-.five {
-  animation-delay: calc(var(--ripple-delay) * 4);
+.img-large:hover {
+  animation: breath infinite alternate var(--duration-breath);
 }
 
 .active .img-medium.normal {
@@ -150,12 +161,12 @@ img {
 
 .active .img-medium.activated {
   opacity: 1;
-  animation: breath infinite alternate 1.05s;
+  animation: breath infinite alternate var(--duration-breath);
 }
 
 .active .img-small-wrapper {
   opacity: 1;
-  animation: orbit infinite 4.2s;
+  animation: orbit infinite var(--duration-basic);
 }
 
 @keyframes ripple {
@@ -191,9 +202,11 @@ img {
   }
 }
 
-/* Make page responsive */
+/****************************************************************************** 
+ * Make page responsive
+ */
 @media (max-width: 620px) {
   .price {
-    transform: scale(var(--scale-ui));
+    transform: scale(var(--ui-scale));
   }
 }

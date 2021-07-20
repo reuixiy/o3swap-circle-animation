@@ -3,7 +3,12 @@
 }
 
 :root {
+  --img-large: 140px;
+  --img-medium: 100px;
+  --img-small: 50px;
+  --width-content: 620px;
   --scale-ui: 1;
+  --ripple-delay: 0.7s;
 }
 
 body {
@@ -60,17 +65,27 @@ img {
 }
 
 .img-large {
-  width: 140px;
-  height: 140px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--img-large);
+  height: var(--img-large);
   object-fit: contain;
   padding: 2em;
   background: url(images/img_23.png) no-repeat center center;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.img-large:hover {
+  animation: breath infinite alternate 1.05s;
 }
 
 .img-medium {
   box-sizing: content-box;
-  width: 100px;
-  height: 100px;
+  width: var(--img-medium);
+  height: var(--img-medium);
   transition: opacity 0.5s;
 }
 
@@ -90,8 +105,8 @@ img {
 
 .img-small {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: var(--img-small);
+  height: var(--img-small);
 
   /* Reset small imgs' transform axis */
   left: -25px;
@@ -99,6 +114,36 @@ img {
 }
 
 /* Animation */
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid 0.01em #fff;
+  border-radius: 50%;
+  animation: ripple infinite 4.2s linear;
+}
+
+.one {
+  animation-delay: 0;
+}
+
+.two {
+  animation-delay: var(--ripple-delay);
+}
+
+.three {
+  animation-delay: calc(var(--ripple-delay) * 2);
+}
+
+.four {
+  animation-delay: calc(var(--ripple-delay) * 3);
+}
+
+.five {
+  animation-delay: calc(var(--ripple-delay) * 4);
+}
+
 .active .img-medium.normal {
   opacity: 0;
 }
@@ -111,6 +156,19 @@ img {
 .active .img-small-wrapper {
   opacity: 1;
   animation: orbit infinite 4.2s;
+}
+
+@keyframes ripple {
+  from {
+    width: var(--img-large);
+    height: var(--img-large);
+    opacity: 0.3;
+  }
+  to {
+    width: var(--width-content);
+    height: var(--width-content);
+    opacity: 0.1;
+  }
 }
 
 @keyframes breath {

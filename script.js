@@ -1,3 +1,5 @@
+// UI -------------------------------------------------------------------------
+const maxWidth = 620;
 const radius = 90;
 const smallImgs = [
   // data structure
@@ -107,3 +109,15 @@ const setTranslateXY = (imgs) => {
 };
 
 setTranslateXY(smallImgs);
+
+// Responsive -----------------------------------------------------------------
+const calcAspectRatio = () => window.innerWidth / maxWidth;
+
+const setScale = () => setProperty(':root', '--scale-ui', calcAspectRatio());
+
+// init when page first load
+setScale();
+// update when window is resized
+window.addEventListener('resize', () => setScale());
+
+// Animation ------------------------------------------------------------------

@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --scale-ui: 1;
+}
+
 body {
   position: absolute;
   display: flex;
@@ -92,5 +96,12 @@ img {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Make page responsive */
+@media screen and (max-width: 620px) {
+  .price {
+    transform: scale(var(--scale-ui));
   }
 }

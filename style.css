@@ -192,7 +192,7 @@ img {
 }
 
 /* Make page responsive */
-@media screen and (max-width: 620px) {
+@media (max-width: 620px) {
   .price {
     transform: scale(var(--scale-ui));
   }

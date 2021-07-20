@@ -28,7 +28,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .right-bottom {
@@ -68,12 +68,24 @@ img {
 }
 
 .img-medium {
+  box-sizing: content-box;
   width: 100px;
   height: 100px;
+  transition: opacity 0.5s;
 }
 
-.img-medium.active {
-  display: none;
+.img-medium.activated {
+  opacity: 0;
+  border-radius: 50%;
+}
+
+.img-medium.normal {
+  opacity: 1;
+}
+
+.img-small-wrapper {
+  opacity: 0.05;
+  transition: opacity 0.2s;
 }
 
 .img-small {
@@ -86,8 +98,30 @@ img {
   bottom: -25px;
 }
 
-.img-small-wrapper {
-  /* animation: orbit infinite 4.2s; */
+/* Animation */
+.active .img-medium.normal {
+  opacity: 0;
+}
+
+.active .img-medium.activated {
+  opacity: 1;
+  animation: breath infinite alternate 1.05s;
+}
+
+.active .img-small-wrapper {
+  opacity: 1;
+  animation: orbit infinite 4.2s;
+}
+
+@keyframes breath {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    border: 3px solid rgba(12, 175, 139, 100%);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.9);
+    border: 3px solid rgba(12, 175, 139, 0%);
+  }
 }
 
 @keyframes orbit {

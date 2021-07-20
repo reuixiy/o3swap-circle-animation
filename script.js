@@ -1,5 +1,6 @@
 // UI -------------------------------------------------------------------------
 const maxWidth = 620;
+const duration = 4.2;
 const radius = 90;
 const smallImgs = [
   // data structure
@@ -121,3 +122,21 @@ setScale();
 window.addEventListener('resize', () => setScale());
 
 // Animation ------------------------------------------------------------------
+const eleClasses = ['.left-top', '.right-top', '.left-bottom', '.right-bottom'];
+
+let index = 0;
+
+const activeAnimation = () => {
+  index = index > 3 ? 0 : index;
+
+  const ele = document.querySelector(eleClasses[index]);
+  const delay = duration * 1000;
+
+  ele.classList.add('active');
+  setTimeout(() => ele.classList.remove('active'), delay);
+
+  index++;
+  setTimeout(() => activeAnimation(), delay * 1.2);
+};
+
+activeAnimation();

@@ -13,3 +13,5 @@ Dev: [using browser-sync](https://medium.com/@svinkle/start-a-local-live-reload-
 - https://en.wikipedia.org/wiki/Cathetus
 - https://en.wikipedia.org/wiki/Radian
 - http://jsfiddle.net/r4AFV/1/
+- https://css-tricks.com/using-custom-properties-to-wrangle-variations-in-keyframe-animations/
+- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions

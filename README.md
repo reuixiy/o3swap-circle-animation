@@ -11,6 +11,7 @@ Refs:
 - https://blog.csdn.net/baian5334/article/details/101755494
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt
 - https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function
+- https://en.wikipedia.org/wiki/Trigonometric_functions
 - https://en.wikipedia.org/wiki/Hypotenuse
 - https://en.wikipedia.org/wiki/Cathetus
 - https://en.wikipedia.org/wiki/Radian

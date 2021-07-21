@@ -116,8 +116,8 @@ img {
   height: var(--img-small);
 
   /* Reset small img's transform axis */
-  left: -25px;
-  bottom: -25px;
+  left: calc(-1 * calc(var(--img-small) / 2));
+  bottom: calc(-1 * calc(var(--img-small) / 2));
 }
 
 /****************************************************************************** 
